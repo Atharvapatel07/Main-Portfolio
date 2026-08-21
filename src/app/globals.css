@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
+/* ── Design tokens — bright AI-systems exhibition ─────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #f7faff;
+  --surface: #ffffff;
+  --ink: #091a35;
+  --ink-soft: #3c4c66;
+  --ink-faint: #64748b;
+  --line: #dbe5f3;
+  --blue: #2563eb;
+  --violet: #7c3aed;
+  --cyan: #06b6d4;
+  --amber: #d97706;
+  --mint-panel: #ecfdf5;
+  --lilac-panel: #f3efff;
+  --blue-panel: #e8f1ff;
+  --lemon-panel: #fef9e7;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --shadow-lift: 0 1px 2px rgb(9 26 53 / 0.05), 0 12px 32px -16px rgb(37 99 235 / 0.25);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-blue: var(--blue);
+  --color-violet: var(--violet);
+  --color-cyan: var(--cyan);
+  --color-amber: var(--amber);
+  --color-mint-panel: var(--mint-panel);
+  --color-lilac-panel: var(--lilac-panel);
+  --color-blue-panel: var(--blue-panel);
+  --color-lemon-panel: var(--lemon-panel);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --animate-dash-flow: dash-flow 2.4s linear infinite;
+  @keyframes dash-flow {
+    to {
+      stroke-dashoffset: -24;
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--blue) 22%, transparent);
+}
+
+/* Fine engineering grid used behind hero / lab panels */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--blue) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--blue) 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.mesh-glow {
+  background:
+    radial-gradient(42rem 24rem at 12% -10%, color-mix(in oklab, var(--violet) 14%, transparent), transparent 60%),
+    radial-gradient(38rem 22rem at 88% 0%, color-mix(in oklab, var(--cyan) 14%, transparent), transparent 55%),
+    radial-gradient(30rem 20rem at 55% 30%, color-mix(in oklab, var(--blue) 10%, transparent), transparent 65%);
+}
+
+/* Tactile focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── Recruiter mode ──────────────────────────────────────────────── */
+html[data-recruiter="on"] .recruit-hide {
+  display: none !important;
+}
+#recruiter-brief {
+  display: none;
+}
+html[data-recruiter="on"] #recruiter-brief {
+  display: block;
+}
+html[data-recruiter="on"] *,
+html[data-recruiter="on"] *::before,
+html[data-recruiter="on"] *::after {
+  animation-duration: 0.001s !important;
+  transition-duration: 0.001s !important;
+}
+
+/* ── Motion discipline ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+.reveal-base {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-base {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Diagram data-flow strokes */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flowing-dash {
+  stroke-dasharray: 7 5;
+  animation: dash-flow 2.2s linear infinite;
+}
+.stroke-dasharray-4 {
+  stroke-dasharray: 5 4;
+}
+
+/* Long code excerpts scroll instead of overflowing */
+pre.code-excerpt {
+  overflow-x: auto;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 2000px) {
+  .shell {
+    max-width: 1680px;
+  }
 }
