@@ -128,7 +128,7 @@ function RecruiterBrief() {
           Atharva A. Patel · AI/ML Engineer · Pune, India
         </h2>
         <p className="mt-2 max-w-2xl text-ink-soft">
-          Pre-final-year B.E. IT @ I2IT Pune (2023–27). AI/ML Student Researcher,
+          final-year B.E. IT @ I2IT Pune (2023–27). AI/ML Student Researcher,
           May–Sep 2025. Builds LLM systems, agents, and real-time vision — with
           evaluation first.
         </p>

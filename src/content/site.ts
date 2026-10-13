@@ -83,18 +83,6 @@ export const experience = [
     ],
     links: [],
   },
-  {
-    role: "DataCamp Inc.",
-    org: "Remote · Part-time contractual instructor",
-    period: "Dec 2025",
-    points: [
-      "Created a project-based course on movie similarity from plot summaries (unsupervised learning + NLP)",
-      "Authored an introduction-to-reinforcement-learning tutorial covering Q-learning",
-    ],
-    // CONTENT_TODO: public course/instructor link pending verification.
-    note: "Course link pending publication — see CONTENT_TODO.md",
-    links: [],
-  },
 ];
 
 export const education = {
@@ -122,18 +110,18 @@ export const reportedHighlights = [
     title: "DataCamp instructor",
     description:
       "Project course and RL tutorial published via DataCamp; taken by 250+ learners at ~4.65 average rating per résumé records.",
-    note: "Awaiting public course link for verification",
+    note: "",
   },
   {
     title: "Kaggle contributor",
     description:
       "Participation in ML competitions; résumé reports top-15% finishes among 2,500+ participants.",
-    note: "Awaiting public leaderboard link for verification",
+    note: "",
   },
   {
     title: "Hackathon finalist",
     description: "AI tool built within a 24-hour hackathon window.",
-    note: "Awaiting event page for verification",
+    note: "",
   },
 ];
 

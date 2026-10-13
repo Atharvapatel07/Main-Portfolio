@@ -27,7 +27,7 @@ export function Hero() {
           , agents, and real-time vision.
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          I&apos;m {site.name} — a pre-final-year B.E. IT student at I2IT Pune.
+          I&apos;m {site.name} — a final-year B.E. IT student at I2IT Pune.
           Every project on this site states who built what, how it was evaluated,
           and links to the exact repo or an honest &ldquo;proof pending&rdquo; note.
         </p>
